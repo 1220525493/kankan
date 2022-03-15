@@ -36,7 +36,7 @@
 
   import Auth from '../apis/auth'
   import Bus from '../helpers/bus'
-
+  import {mapState,mapActions,mapGetters,mapMutations} from 'vuex'
   // Auth.getInfo()
   //   .then(data => {
   //     console.log(data)
@@ -68,6 +68,10 @@
       }
     },
     methods: {
+      ...mapActions({
+        loginUser:'login',
+        registerUser: 'register'
+      }),
       showLogin(){
         this.isShowLogin = true
         this.isShowRegister = false
@@ -88,13 +92,13 @@
           return
         }
 
-        Auth.register({
+       this.registerUser({
             username: this.register.username,
             password: this.register.password
-          }).then(data => {
+          }).then(() => {
             this.register.isError = false
             this.register.notice = ''
-            Bus.$emit('userInfo', { username: this.login.username })
+
             this.$router.push({ path: 'notebooks' })
           }).catch(data => {
             this.register.isError = true
@@ -113,13 +117,12 @@
           return
         }
 
-        Auth.login({
+        this.loginUser({
             username: this.login.username,
             password: this.login.password
-          }).then(data => {
+          }).then(() => {
             this.login.isError = false
             this.login.notice = ''
-            Bus.$emit('userInfo', { username: this.login.username })
             this.$router.push({ path: 'notebooks' })
           }).catch(data => {
             this.login.isError = true

@@ -8,7 +8,7 @@ import ElementUI from 'element-ui'
 import '../theme/index.css'
 import App from './App'
 import router from './router'
-
+import store from './store/index.js'
 //Vue.use(Button)
 //Vue.prototype.$message = Message
 Vue.use(ElementUI)
@@ -19,6 +19,7 @@ Vue.config.productionTip = false
 window.vm = new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
