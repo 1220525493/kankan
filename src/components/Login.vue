@@ -34,19 +34,8 @@
 
 <script>
 
-  import Auth from '../apis/auth'
-  import Bus from '../helpers/bus'
+
   import {mapState,mapActions,mapGetters,mapMutations} from 'vuex'
-  // Auth.getInfo()
-  //   .then(data => {
-  //     console.log(data)
-  //   })
-
-  // request('/auth')
-  //  .then(data=>{
-  //    console.log(data)
-  //   })
-
 
   export default {
     data(){
@@ -54,8 +43,8 @@
         isShowLogin: true,
         isShowRegister: false,
         login: {
-          username: 'wencan123',
-          password: '123456789',
+          username: '',
+          password: '',
           notice: '输入用户名和密码',
           isError: false
         },

@@ -8,14 +8,13 @@
       <el-button type="success">成功按钮</el-button>
       <el-button type="info">信息按钮</el-button>
       <el-button type="warning">警告按钮</el-button>
-      <el-button type="danger">危险按钮</el-button>      
+      <el-button type="danger">危险按钮</el-button>
     </div>
   </div>
 </template>
 
 <script>
-import { Message } from 'element-ui'
-
+import {mapState,mapActions,mapGetters,mapMutations} from 'vuex'
 export default {
   name: 'HelloWorld',
   data () {
@@ -23,8 +22,15 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
+  created() {
+    this.checkLogin({path: '/login'})
+  },
 
   methods: {
+    ...mapActions([
+      'checkLogin'
+    ]),
+
     open() {
       //Message('open...')
       this.$message('open again')

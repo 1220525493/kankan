@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import Auth from '../apis/auth'
+
   import {mapState,mapActions,mapGetters,mapMutations} from 'vuex'
 
   export default {

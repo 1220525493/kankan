@@ -1,7 +1,6 @@
 import Note from "../../apis/notes";
 import {Message} from "element-ui";
 
-// import notebook from 'src/apis/notebooks'
 
 
 const state = {
@@ -11,8 +10,8 @@ const state = {
 const getters = {
   notes: state => state.notes || [],
   curNote:state=>{
-    if (!Array.isArray(state.notes)) return{}
-    if (!state.curNoteId)return state.notes[0]
+    if (!Array.isArray(state.notes)) return {}
+    if (!state.curNoteId)return state.notes[0] || {}
     return state.notes.find(note=>note.id == state.curNoteId) || {}
   }
 }
@@ -24,14 +23,14 @@ const mutations = {
     state.notes.unshift(payload.note)
   },
   updateNote(state, payload) {
-    let note = state.notes.find(note => note.id === payload.noteId) || {}
+    let note = state.notes.find(note => note.id == payload.noteId) || {}
     note.title = payload.title
     note.content =payload.content
   },
   deleteNote(state, payload) {
     state.notes = state.notes.filter(note => note.id !== payload.noteId)
  },
-  setCurNote(state,payload){
+  setCurNote(state,payload ){
     state.curNoteId = payload.curNoteId
   }
 }

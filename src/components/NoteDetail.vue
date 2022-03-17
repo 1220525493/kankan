@@ -53,7 +53,6 @@ export default {
 
   created() {
     this.checkLogin({path: '/login'})
-
   },
 
   computed: {
@@ -76,6 +75,7 @@ export default {
       'checkLogin'
     ]),
     onUpdateNote: _.debounce(function() {
+      if (!this.curNote.id)return
       this.updateNote({noteId: this.curNote.id , title: this.curNote.title, content: this.curNote.content })
         .then(data => {
           this.statusText = '已保存'

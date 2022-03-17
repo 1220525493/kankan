@@ -15,7 +15,7 @@
       <div>标题</div>
     </div>
     <ul class="notes">
-      <li v-for="note in notes">
+      <li v-for="note in notes" >
         <router-link :to="`/note?noteId=${note.id}&notebookId=${curBook.id}`">
           <span class="date">{{note.updatedAtFriendly}}</span>
           <span class="title">{{note.title}}</span>
@@ -26,9 +26,7 @@
 </template>
 
 <script>
-  import Notebooks from '../apis/notebooks'
-  import Notes from '../apis/notes'
-  import Bus from '../helpers/bus'
+
   import {mapState,mapActions,mapGetters,mapMutations} from 'vuex'
 
   export default {
@@ -39,6 +37,15 @@
         return  this.getNotes({notebookId:this.curBook.id})
       }).then(()=>{
         this.setCurNote({curNoteId:this.$route.query.noteId})
+          this.$router.replace({
+            path:'/note',
+            query:{
+              noteId:this.curNote.id,
+              notebookId:this.curBook.id
+            }
+          })
+
+
       })
 
       },
@@ -51,7 +58,8 @@
       ...mapGetters([
         'notebooks',
         'notes',
-        'curBook'
+        'curBook',
+        'curNote'
       ])
     },
 
@@ -70,7 +78,16 @@
           return this.$router.push({ path: '/trash'})
         }
         this.$store.commit('setCurBook',{curBookId:notebookId})
-        this.getNotes({notebookId})
+        this.getNotes({notebookId}).then(()=>{
+          this.setCurNote({})
+          this.$router.replace({
+            path:'/note',
+            query:{
+              noteId:this.curNote.id,
+              notebookId:this.curBook.id
+            }
+          })
+        })
 
       },
 

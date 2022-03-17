@@ -16,7 +16,7 @@ export default {
           res.data = res.data.sort((notebook1, notebook2) => notebook1.createdAt < notebook2.createdAt)
           res.data.forEach(notebook=>{
             notebook.createdAtFriendly = friendlyDate(notebook.createdAt)
-            notebook.updatedAtFriendly = friendlyDate(notebook.createdAt)
+            notebook.updatedAtFriendly = friendlyDate(notebook.updatedAt)
           })
           resolve(res)
         }).catch(err => {
