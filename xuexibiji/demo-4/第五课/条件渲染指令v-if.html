@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>条件渲染</title>
+</head>
+<body>
+<div id="app">
+    <p v-if="6<3">{{origin}}</p>
+    <p v-else-if="9>5">{{banana}}</p>
+    <p v-else>{{pineapple}}</p>
+    <hr>
+    v-if的实例用法：
+    需求：点击按钮实现用户名输入框和密码，v-if的弊端
+    vue在渲染元素时，处于效率考虑，会尽可能的复用已有的元素而非重新渲染，因此会出现乌龙，指挥渲染变化的元素，
+    也就说input的元素被复用，所以需要在输入框加key保持唯一性
+    <div v-if="type==='name'">
+        用户名：<input type="text" placeholder="请输入用户名" key="name">
+    </div>
+    <div v-else>
+        密码：<input type="text" placeholder="请输入密码" key="psd">
+    </div>
+    <button v-on:click="onDate">点击我切换按钮</button>
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.16/vue.js"></script>
+<script>
+  let app = new Vue({
+    el:'#app',
+    data:{
+    origin:'origin',
+      banana:'banana',
+      pineapple:'pineapple',
+      type:'name'
+    },
+    methods:{
+      onDate:function (){
+        this.type = (this.type==='name'? 'password':'name' )
+      }
+    }
+
+  })
+</script>
+</body>
+</html>

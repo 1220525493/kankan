@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <my-component>
+    </my-component>
+    <name-component>
+        <p slot="header">我是标题</p>
+        <h1>我是头部</h1>
+        <h2>我是身体</h2>
+        <h4 slot="footer">我是底部</h4>
+    </name-component>
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.16/vue.js"></script>
+<script>
+  Vue.component('my-component',{
+    template:'<div> <slot>我是子组件的内容，如果父组件没有插入内容我就默认显示</slot></div>',
+
+  })
+  Vue.component('name-component',{
+    template:'<div><div class="header"><slot name="header"></slot></div></div>',
+
+  })
+  let app = new Vue({
+    el:'#app',
+    data:{
+
+    }
+  })
+</script>
+</body>
+</html>

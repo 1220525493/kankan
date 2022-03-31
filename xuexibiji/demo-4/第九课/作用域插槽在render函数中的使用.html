@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <child></child>
+
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.16/vue.js"></script>
+<script>
+  Vue.component('child',{
+    render:function (createElement) {
+     //第二个参数是可选的，第二个参数是数据对象-----只能是Object
+      return createElement({
+        template:'<div>我是好人</div>'
+      },{
+        class: {
+          foo:false,
+          baz:true
+        },
+        style:{
+          color:'red',
+          fontSize:'28px'
+        },
+        //z正常的html特性
+        attrs:{
+          id:'foo',
+        },
+        //用来写原生的Dom属性
+        domProps:{
+        innerHTML:'<span style="color:red ;font-size: 28px" >我是红色</span>'
+        }
+
+      })
+
+    }
+  })
+  let app = new Vue({
+    el:'#app',
+    data:{
+
+    }
+  })
+</script>
+</body>
+</html>
